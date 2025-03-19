@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
             event.stopPropagation(); // Stop other event listeners
 
             localStorage.setItem("activeNav", "figma"); // Set active nav to 'figma'
-            window.open("figma.html", "_blank"); // Open in a new tab
+            window.open("./figma.html", "_blank"); // Open in a new tab
         });
     }
 });
