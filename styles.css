@@ -134,9 +134,9 @@ a:hover{
     margin-left: 0.7rem !important;
   }
 
-  .figma-button{
+  /*.figma-button{
     font-size: 1rem !important;
-  }
+  }*/
 
   #about{
     margin-bottom: 5rem;
@@ -232,10 +232,10 @@ a:hover{
     margin-left: 1.2rem !important;
   }
 
-  .figma-button{
+  /*.figma-button{
     font-size: 1.2rem !important;
     font-weight: 200 !important;
-  }
+  }*/
 
   .sidepanel-left ul{
       margin-top: 4.1rem;
@@ -466,11 +466,11 @@ nav li{
   background-color: #294282 !important;
 }
 
-.figma-embed{
+/*.figma-embed{
   top: 0 !important;
   position: absolute;
   margin-top: 8rem;
-}
+}*/
 
 .sidepanel {
   height: 100%;
