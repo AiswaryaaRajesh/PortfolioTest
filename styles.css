@@ -85,6 +85,10 @@ a:hover{
     width: 13rem !important;
   }
 
+  .figma-embed p{
+    font-size: 1rem;
+  }
+
   .footer .logo-footer{
     height: 2rem;
   }
@@ -180,6 +184,10 @@ a:hover{
     width: 5.5rem !important;
   }
 
+  .figma-embed p{
+    font-size: 1.3rem;
+  }
+  
   .footer .logo-footer{
     height: 3rem;
   }
@@ -283,6 +291,10 @@ a:hover{
     top: 30rem;
     left: 18.2rem;
     width: 5.5rem !important;
+  }
+
+  .figma-embed p{
+    font-size: 1.3rem;
   }
 
   .footer .logo-footer{
