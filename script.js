@@ -1,9 +1,9 @@
 //preloader
-window.addEventListener('load', () => {
-    const preload = document.getElementById("preloader");
-    preload.classList.add('preload-finish');
+// window.addEventListener('load', () => {
+//     const preload = document.getElementById("preloader");
+//     preload.classList.add('preload-finish');
     
-});
+// });
 
 //Sidepanel
 function openNav() {
