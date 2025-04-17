@@ -22,21 +22,6 @@ document.querySelectorAll(".nav-link").forEach(item => {
     });
 });
 
-//figma nav-link active on switching webpages DONT CHANGEE
-// document.addEventListener("DOMContentLoaded", function () {
-//     const figmaButton = document.getElementById("openFigma");
-
-//     if (figmaButton) {
-//         figmaButton.addEventListener("click", function (event) {
-//             event.preventDefault(); // Prevent default action
-//             event.stopPropagation(); // Stop other event listeners
-
-//             localStorage.setItem("activeNav", "figma"); // Set active nav to 'figma'
-//             window.open("./figma.html", "_blank"); // Open in a new tab
-//         });
-//     }
-// });
-
 //AutoUpdate Nav-links on Scroll
 document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll("section");
@@ -124,4 +109,3 @@ document.addEventListener("DOMContentLoaded", () => {
   
     requestAnimationFrame(updateScrollAnimations);
   });
-  
