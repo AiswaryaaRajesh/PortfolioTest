@@ -1,13 +1,13 @@
 // ✅ Preloader
-window.addEventListener('load', () => {
-    const preload = document.getElementById("preloader");
-    if (preload) {
-        preload.classList.add('preload-finish');
-        console.log("✅ Preloader finished.");
-    } else {
-        console.warn("⚠️ Preloader element not found.");
-    }
-});
+// window.addEventListener('load', () => {
+//     const preload = document.getElementById("preloader");
+//     if (preload) {
+//         preload.classList.add('preload-finish');
+//         console.log("✅ Preloader finished.");
+//     } else {
+//         console.warn("⚠️ Preloader element not found.");
+//     }
+// });
 
 // ✅ Sidepanel Functions
 function openNav() {
