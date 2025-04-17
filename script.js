@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
-// //Timeline progress bar hide
+//scroll for circle and date timeline
 document.addEventListener("DOMContentLoaded", () => {
     const timelineItems = document.querySelectorAll(".timeline_item");
   
@@ -106,6 +106,6 @@ document.addEventListener("DOMContentLoaded", () => {
   
       requestAnimationFrame(updateScrollAnimations);
     }
-  
+    console.log("Scroll animation script loaded");
     requestAnimationFrame(updateScrollAnimations);
   });
