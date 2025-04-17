@@ -1,6 +1,6 @@
 .salsa-regular {
   font-family: "Salsa", cursive;
-  font-weight: 400;
+  /* font-weight: 400; */
   font-style: normal;
 }
 
@@ -157,7 +157,16 @@ a:hover{
   }
   
   .timeline-text-subheading{
-    font-size: 1.2rem;
+    font-size: 1rem;
+  }
+
+  .square-legend{
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  
+  .legend-label p{
+    font-size: 1rem;
   }
 }
 
@@ -315,6 +324,15 @@ a:hover{
     font-size: 1.4rem;
   }
 
+  .square-legend{
+    height: 2rem;
+    width: 2rem;
+  }
+  
+  .legend-label p{
+    font-size: 1.4rem;
+  }
+
 }
 
 /*large screen */
@@ -462,7 +480,6 @@ a:hover{
     position: sticky;
     top: 50vh;
     font-size: 3rem;
-    font-weight: 500;
     line-height: 1.2;
     position: absolute;
     text-align: right; /* if you want to keep it aligned right */
@@ -476,6 +493,15 @@ a:hover{
     font-size: 1.4rem;
   }
   
+  .square-legend{
+    height: 2rem;
+    width: 2rem;
+  }
+  
+  .legend-label p{
+    font-size: 1.4rem;
+  }
+
 }
 
 /* -----------------------------------------------------------
@@ -791,6 +817,9 @@ BODY
   z-index: 3;
 }
 
+.section-padding-end{
+  padding-bottom: 4rem;
+}
 
 
 /*-------------TIMELINE-----------------*/
@@ -850,6 +879,7 @@ BODY
   margin: 0 auto;
   position: relative;
   padding-bottom: 100px;
+  margin-bottom: 40px;
 }
 
 .timeline_item {
@@ -882,6 +912,8 @@ BODY
   transition: transform 0.1s ease-out;
   will-change: transform;
   /* font-size: 2rem; */
+  color: #472f73;
+  font-weight: 600;
 }
 
 .timeline_left,
