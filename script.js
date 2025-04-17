@@ -73,39 +73,39 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //scroll for circle and date timeline
 document.addEventListener("DOMContentLoaded", () => {
-    const timelineItems = document.querySelectorAll(".timeline_item");
-  
-    function updateScrollAnimations() {
-      const centerY = window.innerHeight / 2;
-      const isSmallScreen = window.innerWidth < 768;
-  
-      timelineItems.forEach(item => {
-        const rect = item.getBoundingClientRect();
-        const itemHeight = rect.height;
-        const itemTop = rect.top;
-        const itemBottom = rect.bottom;
-  
-        const circle = item.querySelector(".timeline_circle");
-        const dateText = item.querySelector(".timeline_date-text");
-  
-        let progress = (centerY - itemTop) / (itemHeight - 100);
-        progress = Math.max(0, Math.min(progress, 1));
-  
-        const translateY = progress * (itemHeight - 60);
-  
-        if (circle) {
-          circle.style.transform = `translateY(${translateY}px)`;
-        }
-  
-        if (dateText && !isSmallScreen) {
-          dateText.style.transform = `translateY(${translateY}px)`;
-        } else if (dateText && isSmallScreen) {
-          dateText.style.transform = "none";
-        }
-      });
-  
-      requestAnimationFrame(updateScrollAnimations);
-    }
-    console.log("Scroll animation script loaded");
+  const timelineItems = document.querySelectorAll(".timeline_item");
+
+  if (!timelineItems.length) return;
+
+  const isSmallScreen = window.innerWidth < 768;
+
+  function updateScrollAnimations() {
+    const centerY = window.innerHeight / 2;
+
+    timelineItems.forEach(item => {
+      const rect = item.getBoundingClientRect();
+      const itemHeight = rect.height;
+      const itemTop = rect.top;
+
+      const circle = item.querySelector(".timeline_circle");
+      const dateText = item.querySelector(".timeline_date-text");
+
+      if (!circle) return;
+
+      let progress = (centerY - itemTop) / (itemHeight - 100);
+      progress = Math.max(0, Math.min(progress, 1));
+      const translateY = progress * (itemHeight - 60);
+
+      circle.style.transform = `translateY(${translateY}px)`;
+
+      if (dateText) {
+        dateText.style.transform = isSmallScreen ? "none" : `translateY(${translateY}px)`;
+      }
+    });
+
     requestAnimationFrame(updateScrollAnimations);
-  });
+  }
+
+  console.log("Scroll animation script loaded");
+  requestAnimationFrame(updateScrollAnimations);
+});
