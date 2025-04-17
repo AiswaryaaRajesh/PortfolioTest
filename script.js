@@ -22,21 +22,6 @@ document.querySelectorAll(".nav-link").forEach(item => {
     });
 });
 
-//figma nav-link active on switching webpages DONT CHANGEE
-// document.addEventListener("DOMContentLoaded", function () {
-//     const figmaButton = document.getElementById("openFigma");
-
-//     if (figmaButton) {
-//         figmaButton.addEventListener("click", function (event) {
-//             event.preventDefault(); // Prevent default action
-//             event.stopPropagation(); // Stop other event listeners
-
-//             localStorage.setItem("activeNav", "figma"); // Set active nav to 'figma'
-//             window.open("./figma.html", "_blank"); // Open in a new tab
-//         });
-//     }
-// });
-
 //AutoUpdate Nav-links on Scroll
 document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll("section");
@@ -84,3 +69,45 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+// //Timeline progress bar hide
+document.addEventListener("DOMContentLoaded", () => {
+    const timelineItems = document.querySelectorAll(".timeline_item");
+  
+    function updateScrollAnimations() {
+      const centerY = window.innerHeight / 2;
+      const isSmallScreen = window.innerWidth < 768;
+  
+      timelineItems.forEach(item => {
+        const rect = item.getBoundingClientRect();
+        const itemHeight = rect.height;
+        const itemTop = rect.top;
+        const itemBottom = rect.bottom;
+  
+        const circle = item.querySelector(".timeline_circle");
+        const dateText = item.querySelector(".timeline_date-text");
+  
+        let progress = (centerY - itemTop) / (itemHeight - 100);
+        progress = Math.max(0, Math.min(progress, 1));
+  
+        const translateY = progress * (itemHeight - 60);
+  
+        if (circle) {
+          circle.style.transform = `translateY(${translateY}px)`;
+        }
+  
+        if (dateText && !isSmallScreen) {
+          dateText.style.transform = `translateY(${translateY}px)`;
+        } else if (dateText && isSmallScreen) {
+          dateText.style.transform = "none";
+        }
+      });
+  
+      requestAnimationFrame(updateScrollAnimations);
+    }
+  
+    requestAnimationFrame(updateScrollAnimations);
+  });
+  
+  
