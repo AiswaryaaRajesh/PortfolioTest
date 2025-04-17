@@ -1,48 +1,63 @@
-//preloader
-// window.addEventListener('load', () => {
-//     const preload = document.getElementById("preloader");
-//     preload.classList.add('preload-finish');
-    
-// });
+// ✅ Preloader
+window.addEventListener('load', () => {
+    const preload = document.getElementById("preloader");
+    if (preload) {
+        preload.classList.add('preload-finish');
+        console.log("✅ Preloader finished.");
+    } else {
+        console.warn("⚠️ Preloader element not found.");
+    }
+});
 
-//Sidepanel
+// ✅ Sidepanel Functions
 function openNav() {
-    document.getElementById("mySidepanel").style.width = "80%";
+    const panel = document.getElementById("mySidepanel");
+    if (panel) {
+        panel.style.width = "80%";
+        console.log("✅ Sidepanel opened.");
+    } else {
+        console.warn("⚠️ Sidepanel not found.");
+    }
 }
 
 function closeNav() {
-    document.getElementById("mySidepanel").style.width = "0";
+    const panel = document.getElementById("mySidepanel");
+    if (panel) {
+        panel.style.width = "0";
+        console.log("✅ Sidepanel closed.");
+    } else {
+        console.warn("⚠️ Sidepanel not found.");
+    }
 }
 
-//Navbar li bold active
+// ✅ Navbar 'active' class toggle on click
 document.querySelectorAll(".nav-link").forEach(item => {
-    item.addEventListener("click", function() {
-      document.querySelectorAll(".nav-link").forEach(li => li.classList.remove("active"));
-      this.classList.add("active");
+    item.addEventListener("click", function () {
+        document.querySelectorAll(".nav-link").forEach(li => li.classList.remove("active"));
+        this.classList.add("active");
+        console.log(`✅ Activated nav link: ${this.textContent}`);
     });
 });
 
-//AutoUpdate Nav-links on Scroll
-document.addEventListener("DOMContentLoaded", function () {
+// ✅ Auto-Update Nav-links on Scroll
+document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-link");
 
-    // Function to remove 'active' from all nav links
     function removeActiveClasses() {
         navLinks.forEach(link => link.classList.remove("active"));
     }
 
-    // Function to activate a nav-link based on section
     function activateNavLink(sectionId) {
         removeActiveClasses();
         const activeLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
         if (activeLink) {
             activeLink.classList.add("active");
             localStorage.setItem("activeNav", sectionId);
+            console.log(`📌 Section in view: #${sectionId}`);
         }
     }
 
-    // Intersection Observer API to track sections
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
@@ -51,61 +66,67 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }, { rootMargin: "-50% 0px -50% 0px", threshold: 0.3 });
 
-    // Observe all sections
     sections.forEach(section => observer.observe(section));
 
-    // Restore active state from localStorage on page load
     const savedActive = localStorage.getItem("activeNav");
     if (savedActive) {
         activateNavLink(savedActive);
+        console.log(`🔁 Restored nav state from localStorage: ${savedActive}`);
     }
 
-    // Prevent overriding clicks with scroll updates
     navLinks.forEach(link => {
         link.addEventListener("click", function () {
             localStorage.setItem("activeNav", this.getAttribute("href").substring(1));
             removeActiveClasses();
             this.classList.add("active");
+            console.log(`🔗 Nav link manually clicked: ${this.textContent}`);
         });
     });
 });
 
-
-//scroll for circle and date timeline
+// ✅ Timeline Scroll Animation
 document.addEventListener("DOMContentLoaded", () => {
-  const timelineItems = document.querySelectorAll(".timeline_item");
+    console.log("🌀 Timeline animation script initialized.");
 
-  if (!timelineItems.length) return;
+    const timelineItems = document.querySelectorAll(".timeline_item");
+    console.log("🧩 Found timeline items:", timelineItems.length);
 
-  const isSmallScreen = window.innerWidth < 768;
+    function updateScrollAnimations() {
+        const centerY = window.innerHeight / 2;
+        const isSmallScreen = window.innerWidth < 768;
 
-  function updateScrollAnimations() {
-    const centerY = window.innerHeight / 2;
+        timelineItems.forEach(item => {
+            const rect = item.getBoundingClientRect();
+            const itemHeight = rect.height;
+            const itemTop = rect.top;
 
-    timelineItems.forEach(item => {
-      const rect = item.getBoundingClientRect();
-      const itemHeight = rect.height;
-      const itemTop = rect.top;
+            const circle = item.querySelector(".timeline_circle");
+            const dateText = item.querySelector(".timeline_date-text");
 
-      const circle = item.querySelector(".timeline_circle");
-      const dateText = item.querySelector(".timeline_date-text");
+            let progress = (centerY - itemTop) / (itemHeight - 100);
+            progress = Math.max(0, Math.min(progress, 1));
 
-      if (!circle) return;
+            const translateY = progress * (itemHeight - 60);
 
-      let progress = (centerY - itemTop) / (itemHeight - 100);
-      progress = Math.max(0, Math.min(progress, 1));
-      const translateY = progress * (itemHeight - 60);
+            if (circle) {
+                circle.style.transform = `translateY(${translateY}px)`;
+            } else {
+                console.warn("⚠️ .timeline_circle not found in an item.");
+            }
 
-      circle.style.transform = `translateY(${translateY}px)`;
+            if (dateText) {
+                if (!isSmallScreen) {
+                    dateText.style.transform = `translateY(${translateY}px)`;
+                } else {
+                    dateText.style.transform = "none";
+                }
+            } else {
+                console.warn("⚠️ .timeline_date-text not found in an item.");
+            }
+        });
 
-      if (dateText) {
-        dateText.style.transform = isSmallScreen ? "none" : `translateY(${translateY}px)`;
-      }
-    });
+        requestAnimationFrame(updateScrollAnimations);
+    }
 
     requestAnimationFrame(updateScrollAnimations);
-  }
-
-  console.log("Scroll animation script loaded");
-  requestAnimationFrame(updateScrollAnimations);
 });
