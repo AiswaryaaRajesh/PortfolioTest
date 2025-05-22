@@ -19,13 +19,20 @@ body{
 }
 
 a{
-    text-decoration: none;
+    text-decoration: none !important;
     color: #000000;
 }
 
 a:hover{
-    text-decoration: none;
+    text-decoration: none !important;
     color: #000000;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
 
 /*small screen 
@@ -168,6 +175,40 @@ a:hover{
   .legend-label p{
     font-size: 1rem;
   }
+
+  .resume_button_a{
+    font-size: 1rem;
+    color: white;
+  }
+
+  .overlay-text p{
+    font-size: 1.5rem;
+    font-weight: 100;
+    position: relative;
+    width: 250;
+    top: -30px;
+  }
+
+  .overlay-text-spotify{
+    left: 65%;
+  }
+
+  .overlay-text-godrej{
+    left: 65%;
+  }
+
+  .icon-arrow{
+    width: 100%;
+    position: relative;
+    left: 500px;
+    top: 150px;
+    scale: 1.5;
+  }
+
+  .arrow-godrej{
+    left: 530px;
+  }
+
 }
 
 
@@ -331,6 +372,34 @@ a:hover{
   
   .legend-label p{
     font-size: 1.4rem;
+  }
+
+  .resume_button_a{
+    font-size: 1.4rem;
+    color: white;
+  }
+
+  .overlay-text p{
+    font-size: 1.2rem;
+    position: relative;
+    width: 200;
+    top: -30px;
+  }
+
+  .overlay-text-spotify{
+    left: 100%;
+  }
+
+  .overlay-text-godrej{
+    left: 75%;
+  }
+
+  .icon-arrow{
+    width: 100%;
+    position: relative;
+    left: 290px;
+    top: 150px;
+    scale: 1.5;
   }
 
 }
@@ -502,6 +571,33 @@ a:hover{
     font-size: 1.4rem;
   }
 
+  .resume_button_a{
+    font-size: 1.4rem;
+    color: white;
+  }
+
+  .overlay-text p{
+    font-size: 1.7rem;
+    position: relative;
+    top: -30px;
+    width: 350;
+    left: 70%;
+  }
+
+  .icon-arrow{
+    width: 100%;
+    position: relative;
+    top: 140px;
+    scale: 1.5;
+  }
+
+  .arrow-spotify{
+    left: 420px;
+  }
+
+  .arrow-godrej{
+    left: 480px;
+  }
 }
 
 /* -----------------------------------------------------------
@@ -824,7 +920,7 @@ BODY
 
 /*-------------TIMELINE-----------------*/
 
-.heading-overlay {
+.heading-timeline-overlay {
   opacity: 0;
   animation: fadeIn 0.3s ease-in forwards 2.5s; /* Delayed to sync with bg */
   z-index: 3;
@@ -992,6 +1088,69 @@ BODY
   z-index: 1;
 }
 
+.resume_button{
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #472f73;
+  border-radius: 10px;
+}
+
+.resume_button:hover{
+  background-color: #563e82;
+  scale: 1.03;
+  transition: scale 0.2s ease-in;
+}
+
+.resume_button_a:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.project-card{
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: rgba(88, 88, 88, 0.403);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.project-card::after {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 20%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  color: #ffffff;
+}
+
+/* Hover effects */
+.project-card:hover::before,
+.project-card:hover::after,
+.project-card:hover .overlay-text {
+  opacity: 1;
+}
+
+
 /*-----------------FOOTER-----------------*/
 
 .footer{
@@ -1005,4 +1164,18 @@ BODY
 footer{
   width: 100%;
   margin-top: 4rem;
+}
+
+
+/* -------------- TRANSITIONS ------------- */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+  will-change: opacity, transform;
+}
+
+.fade-in-visible {
+  opacity: 1;
+  transform: translateY(0);
 }
