@@ -135,27 +135,32 @@ document.addEventListener("DOMContentLoaded", () => {
 // Section visibility only on scroll
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Section visibility event listener accessed ✅");
-
     const faders = document.querySelectorAll(".fade-in-section");
-    console.log("Elements to observe:", faders);
+    console.log(`✅ Found ${faders.length} element(s) with class 'fade-in-section'`);
 
     const options = {
-        threshold: 0.1,
+        threshold: 0.1
     };
 
     const appearOnScroll = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
-            console.log("Observed:", entry.target);  // ✅ valid now
+            console.log("👁️ Observing:", entry.target);
+            console.log("➡️ isIntersecting:", entry.isIntersecting);
+
             if (entry.isIntersecting) {
+                console.log("✅ Element entered viewport, adding fade-in-visible");
                 entry.target.classList.add("fade-in-visible");
+                entry.target.classList.remove("fade-out");
             } else {
+                console.log("❌ Element exited viewport, adding fade-out");
                 entry.target.classList.remove("fade-in-visible");
+                entry.target.classList.add("fade-out");
             }
         });
     }, options);
 
     faders.forEach(el => {
+        console.log("📌 Observing element:", el);
         appearOnScroll.observe(el);
     });
 });
